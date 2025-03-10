@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mansfield Gas & Exhaust</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* Reset Margins & Padding */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+            font-family: Arial, sans-serif;
+            background-image: url('./images/muffler3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Ensures spacing */
+            background-color: red;
+            padding: 12px 20px;
+            color: white;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            flex-wrap: nowrap; /* Prevents breaking */
+        }
+
+        /* Ensures the logo does not get overlapped */
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            white-space: nowrap;
+            flex: 1; /* Allows logo to take only necessary space */
+        }
+
+        /* Navigation links (desktop only) */
+        .nav-container {
+            flex: 2; /* Makes space for navigation */
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 12px 20px;
+            display: block;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Fix Hamburger Menu Alignment */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            position: absolute;
+            right: 10px; /* Pushes it fully to the right */
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1100; /* Ensures it's above other elements */
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+        }
+
+        /* MOBILE VIEW FIX */
+        @media screen and (max-width: 768px) {
+            .nav-container {
+                display: none; /* Hide menu */
+            }
+
+            .hamburger {
+                display: flex; /* Show hamburger menu */
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: red;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0;
+                z-index: 1000;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        /* Contact Box */
+        .contact-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: red;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 150px auto; /* Centers the box */
+        }
+
+        .contact-box h2 {
+            color: black;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            font-size: 1rem;
+            color: black;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        /* Small Footer */
+        .small-footer {
+            background-color: red;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-top: auto; /* Ensures footer is at bottom */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="navbar">
+    <h1 class="logo">Mansfield Gas & Exhaust</h1>
+
+    <div class="nav-container">
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</header>
+
+<!-- Contact Box -->
+<div class="contact-box">
+    <h2>Contact Us</h2>
+    <p><strong>📍 Address:</strong> 123 Main Street, Mansfield, TX</p>
+    <p><strong>📞 Phone:</strong> (123) 456-7890</p>
+    <p><strong>✉ Email:</strong> info@mansfieldgas.com</p>
+</div>
+
+<!-- Footer -->
+<footer class="small-footer">
+    <p>&copy; 2025 Mansfield Gas & Exhaust | 123 Main Street, Mansfield, TX | (123) 456-7890 | info@mansfieldgas.com</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
