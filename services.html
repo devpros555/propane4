@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Mansfield Gas & Exhaust</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -15,19 +15,23 @@
         }
 
         html, body {
-            width: 100%;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
-            font-family: Arial, sans-serif;
-        }
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 
         /* HEADER STYLES */
         .navbar {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* Center everything */
             background-color: red;
-            padding: 12px 40px;
+            padding: 15px 20px;
             color: white;
+            height: 60px;
             width: 100%;
             position: fixed;
             top: 0;
@@ -35,21 +39,20 @@
             z-index: 1000;
         }
 
-        /* Logo stays on the left */
+        /* LOGO (Left Side) */
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
             white-space: nowrap;
+            position: absolute;
+            left: 20px; /* Keeps it on the left */
         }
 
-        /* Ensure Navigation Links Are Centered */
+        /* NAVIGATION LINKS (Centered) */
         .nav-container {
-            flex-grow: 1;
             display: flex;
-            justify-content: center;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            justify-content: center; /* Centers links */
+            flex-grow: 1;
         }
 
         .nav-links {
@@ -57,10 +60,6 @@
             display: flex;
             gap: 25px;
             padding: 0;
-        }
-
-        .nav-links li {
-            list-style: none;
         }
 
         .nav-links a {
@@ -75,13 +74,16 @@
             text-decoration: underline;
         }
 
-        /* Hamburger Menu */
+        /* HAMBURGER MENU */
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
             position: absolute;
-            right: 20px;
+            right: 10px; /* Keeps it on the right */
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1101;
         }
 
         .hamburger div {
@@ -93,314 +95,201 @@
 
         /* MOBILE VIEW */
         @media screen and (max-width: 768px) {
-            .nav-container {
-                display: none; /* Hide menu on small screens */
-            }
+    .nav-container {
+        display: none; /* Hide menu */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjusted to be below navbar */
+        left: 0;
+        width: 100%;
+        background-color: red;
+        padding: 10px 0;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
+    }
 
-            .hamburger {
-                display: flex; /* Show hamburger menu */
-                position: absolute;
-                right: 20px;
-                top: 50%;
-                transform: translateY(-50%);
-            }
+    .nav-container.active {
+        display: flex; /* Show menu when active */
+    }
 
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: red;
-                display: none;
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger */
+    }
+}
+
+
+        /* Services Section */
+        .services-section {
+            flex-grow: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 60px 20px;
+            background-color: navy;
+            margin-top: 0px; /* Prevent content from being hidden under fixed navbar */
+        }
+
+        .service-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .service-box:hover {
+            transform: scale(1.05);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .service-box h2 {
+            font-size: 2rem;
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .service-box h3 {
+            font-size: 1.4rem;
+            margin-top: 15px;
+            color: black;
+        }
+
+        .service-box p {
+            font-size: 1.1rem;
+            color: black;
+            margin-bottom: 15px;
+        }
+
+        .service-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-box ul li {
+            font-size: 1rem;
+            color: black;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-box ul li i {
+            color: red;
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .services-section {
                 flex-direction: column;
                 align-items: center;
-                padding: 10px 0;
-                z-index: 1000;
-                transition: all 0.3s ease-in-out;
             }
 
-            .nav-links.active {
-                display: flex;
+            .service-box {
+                width: 90%;
+                text-align: center;
             }
         }
+
+        /* Small Footer */
+        .small-footer {
+            background-color: red;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            margin-top: auto;
+        }
+
+        @media screen and (min-width: 769px) {
+    .services-section {
+        margin-top: 20px ; /* Adjust this value as needed */
+        background-color: navy;
+        
+    }
+}
+
+
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header class="navbar">
-        <h1 class="logo">Mansfield Gas & Exhaust</h1>
-    
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </div>
-    
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </header>
-    
-    <script>
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-    </script>
+<!-- HEADER -->
+<header class="navbar">
+    <h1 class="logo">Mansfield Gas & Exhaust</h1>
 
-</body>
-</html>
+    <div class="nav-container">
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </div>
 
-</head>
-<body>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</header>
 
-    <!-- HEADER -->
-    <header class="navbar">
-        <h1 class="logo">Mansfield Gas & Exhaust</h1>
-    
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </div>
-    
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </header>
-    
-    <script>
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-    </script>
-
-    <!-- END OF HEADER SECTION -->
-
-</body>
-</html>
-
-</head>
-<body>
-
-    <!-- HEADER -->
-    <header class="navbar">
-        <h1 class="logo">Mansfield Gas & Exhaust</h1>
-    
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </div>
-    
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </header>
-    
-    <script>
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-    </script>
-    
-
-    <!-- end of header section -->
-
-    <!-- Muffler & Propane Services Section -->
+<!-- Muffler & Propane Services Section -->
 <section class="services-section">
 
-<!-- Propane Services -->
-<div class="service-box propane">
-    <i class="fa-solid fa-gas-pump service-icon"></i>
-    <h2>Propane Services</h2>
-    <p>We provide high-quality propane for residential, commercial, and industrial use. Whether you need propane for heating, cooking, or grilling, we offer reliable and safe refills.</p>
-    
-    <h3>Our Propane Services Include:</h3>
-    <ul>
-        <li><i class="fa-solid fa-check"></i> Propane Tank Refills – Quick and safe refills at competitive prices.</li>
-        <li><i class="fa-solid fa-check"></i> New Tank Sales – Purchase high-quality propane tanks for home and business use.</li>
-        <li><i class="fa-solid fa-check"></i> Safety Inspections – Ensure your tank and connections are in good condition.</li>
-        <li><i class="fa-solid fa-check"></i> Commercial Propane Solutions – Bulk propane supply for businesses.</li>
-    </ul>
+    <!-- Propane Services -->
+    <div class="service-box propane">
+        <i class="fa-solid fa-gas-pump service-icon"></i>
+        <h2>Propane Services</h2>
+        <p>We provide high-quality propane for residential, commercial, and industrial use...</p>
+        <a href="./contact.html" class="service-btn">Learn More</a>
+    </div>
 
-    <!-- Button with Inline CSS -->
-    <a href="./contact.html" style="
-    display: block;
-    width: fit-content;
-    margin: 20px auto 0;
-    padding: 12px 24px;
-    background-color: red;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    transition: 0.3s;">
-    Learn More
-</a>
-</div>
     <!-- Muffler Services -->
     <div class="service-box muffler">
         <i class="fa-solid fa-car service-icon"></i>
         <h2>Muffler Services</h2>
-        <p>Our muffler services ensure that your vehicle runs quietly and efficiently. A damaged muffler can cause excessive noise and reduce fuel efficiency, so regular maintenance is essential.</p>
-
-        <h3>Our Muffler Services Include:</h3>
-        <ul>
-            <li><i class="fa-solid fa-check"></i> Muffler Repair – Fix leaks, rust, and other damages.</li>
-            <li><i class="fa-solid fa-check"></i> Muffler Replacement – Upgrade your muffler for better performance and reduced noise.</li>
-            <li><i class="fa-solid fa-check"></i> Custom Exhaust Installation – Improve horsepower and sound with performance exhausts.</li>
-            <li><i class="fa-solid fa-check"></i> Exhaust System Inspections – Ensure your system is running efficiently.</li>
-        </ul>
-        <!-- Button with Inline CSS -->
-        <a href="./contact.html" style="
-            display: block;
-            width: fit-content;
-            margin: 20px auto 0;
-            padding: 12px 24px;
-            background-color: red;
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            transition: 0.3s;">
-            Learn More
-        </a>
+        <p>Our muffler services ensure that your vehicle runs quietly and efficiently...</p>
+        <a href="./contact.html" class="service-btn">Learn More</a>
     </div>
 
-<style>
-    /* Services Section */
-    .services-section {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-        padding: 60px 20px;
-        background-color: navy;
-    }
+</section>
 
-    .service-box {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 45%;
-        text-align: left;
-        transition: transform 0.3s;
-    }
-
-    .service-box:hover {
-        transform: scale(1.05);
-    }
-
-    .service-icon {
-        font-size: 50px;
-        color: red;
-        margin-bottom: 10px;
-    }
-
-    .service-box h2 {
-        font-size: 2rem;
-        color: red;
-        margin-bottom: 10px;
-    }
-
-    .service-box h3 {
-        font-size: 1.4rem;
-        margin-top: 15px;
-        color: black;
-    }
-
-    .service-box p {
-        font-size: 1.1rem;
-        color: black;
-        margin-bottom: 15px;
-    }
-
-    .service-box ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .service-box ul li {
-        font-size: 1rem;
-        color: black;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-    }
-
-    .service-box ul li i {
-        color: red;
-        margin-right: 8px;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .services-section {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .service-box {
-            width: 90%;
-            text-align: center;
-        }
-    }
-</style>
-<!-- end of services -->
-<!-- footer section -->
-<!-- Small Horizontal Footer -->
+<!-- Footer Section -->
 <footer class="small-footer">
     <p>&copy; 2025 Mansfield Gas & Exhaust | 123 Main Street, Mansfield, TX | (123) 456-7890 | info@mansfieldgas.com</p>
 </footer>
 
-<style>
-    /* Small Horizontal Footer */
-    .small-footer {
-        background-color: red;
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 0.9rem;
-        width: 100%;
-        position: relative; /* Allows it to stay below content */
-        bottom: 0;
-        left: 0;
+<!-- JAVASCRIPT -->
+<script>
+    function toggleMenu() {
+        document.querySelector('.nav-container').classList.toggle('active');
     }
-
-    /* Ensure Page Takes Full Height */
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .content {
-        flex-grow: 1; /* Pushes the footer down */
-    }
-</style>
+</script>
 
 
 </body>
