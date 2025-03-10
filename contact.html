@@ -99,28 +99,40 @@
         }
 
         /* MOBILE VIEW FIX */
-        @media screen and (max-width: 768px) {
-            .nav-container {
-                display: none; /* Hide menu */
-            }
+       @media screen and (max-width: 768px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between; /* Ensures elements are spaced out */
+        align-items: center;
+    }
 
-            .hamburger {
-                display: flex; /* Show hamburger menu */
-            }
+    .logo {
+        flex-grow: 1; /* Allows the logo to take up space */
+    }
 
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: red;
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                padding: 10px 0;
-                z-index: 1000;
-                transition: all 0.3s ease-in-out;
-            }
+    .hamburger {
+        display: flex;
+        position: relative;
+        margin-left: auto; /* Pushes it to the right */
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: red;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+
 
             .nav-links.active {
                 display: flex;
