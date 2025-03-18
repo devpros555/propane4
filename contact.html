@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Mansfield Gas & Exhaust</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -15,53 +15,51 @@
         }
 
         html, body {
-            width: 100%;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
-            font-family: Arial, sans-serif;
-            background-image: url('./images/muffler3.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
 
-        /* Header */
+
+        /* HEADER STYLES */
         .navbar {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Ensures spacing */
+            justify-content: center; /* Center everything */
             background-color: red;
-            padding: 12px 20px;
+            padding: 15px 20px;
             color: white;
+            height: 60px;
             width: 100%;
             position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
-            flex-wrap: nowrap; /* Prevents breaking */
         }
 
-        /* Ensures the logo does not get overlapped */
+        /* LOGO (Left Side) */
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
             white-space: nowrap;
-            flex: 1; /* Allows logo to take only necessary space */
+            position: absolute;
+            left: 20px; /* Keeps it on the left */
         }
 
-        /* Navigation links (desktop only) */
+        /* NAVIGATION LINKS (Centered) */
         .nav-container {
-            flex: 2; /* Makes space for navigation */
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Centers links */
+            flex-grow: 1;
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             padding: 0;
         }
 
@@ -77,19 +75,17 @@
             text-decoration: underline;
         }
 
-        /* Fix Hamburger Menu Alignment */
+        /* HAMBURGER MENU */
         .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    position: relative;
-    right: 0px; /* Moves it all the way to the right */
-    top: 50%;
-    transform: translateY(-50%);
-    padding-right: 15px; /* Adds extra space from the edge */
-    z-index: 1100; /* Ensures it's above other elements */
-}
-
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            position: absolute;
+            right: 10px; /* Keeps it on the right */
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1101;
+        }
 
         .hamburger div {
             width: 30px;
@@ -98,73 +94,122 @@
             margin: 5px;
         }
 
-        /* MOBILE VIEW FIX */
-       @media screen and (max-width: 768px) {
-    .navbar {
-        display: flex;
-        justify-content: space-between; /* Ensures elements are spaced out */
-        align-items: center;
-    }
-
-    .logo {
-        flex-grow: 1; /* Allows the logo to take up space */
-    }
-
-    .hamburger {
-        display: flex;
-        position: relative;
-        margin-left: auto; /* Pushes it to the right */
-    }
-
-    .nav-links {
+        /* MOBILE VIEW */
+        @media screen and (max-width: 768px) {
+    .nav-container {
+        display: none; /* Hide menu */
+        flex-direction: column;
         position: absolute;
-        top: 100%;
+        top: 60px; /* Adjusted to be below navbar */
         left: 0;
         width: 100%;
         background-color: red;
-        flex-direction: column;
-        align-items: center;
         padding: 10px 0;
-        display: none;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
     }
 
-    .nav-links.active {
-        display: flex;
+    .nav-container.active {
+        display: flex; /* Show menu when active */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger */
     }
 }
 
 
-            .nav-links.active {
-                display: flex;
-            }
-        }
-
-        /* Contact Box */
-        .contact-box {
+        /* Services Section */
+        .services-section {
+            flex-grow: 1;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: red;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 350px;
-            text-align: center;
-            border: 1px solid #ddd;
-            margin: 150px auto; /* Centers the box */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 60px 20px;
+            background-color: navy;
+            margin-top: 0px; /* Prevent content from being hidden under fixed navbar */
         }
 
-        .contact-box h2 {
-            color: black;
-            font-size: 1.5rem;
+        .service-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .service-box:hover {
+            transform: scale(1.05);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            color: red;
             margin-bottom: 10px;
         }
 
-        .contact-box p {
+        .service-box h2 {
+            font-size: 2rem;
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .service-box h3 {
+            font-size: 1.4rem;
+            margin-top: 15px;
+            color: black;
+        }
+
+        .service-box p {
+            font-size: 1.1rem;
+            color: black;
+            margin-bottom: 15px;
+        }
+
+        .service-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-box ul li {
             font-size: 1rem;
             color: black;
-            font-weight: bold;
-            margin: 5px 0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-box ul li i {
+            color: red;
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .services-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-box {
+                width: 90%;
+                text-align: center;
+            }
         }
 
         /* Small Footer */
@@ -175,73 +220,252 @@
             padding: 10px 0;
             font-size: 0.9rem;
             width: 100%;
-            margin-top: auto; /* Ensures footer is at bottom */
+            position: relative;
+            bottom: 0;
+            left: 0;
+            margin-top: auto;
         }
+
+        @media screen and (min-width: 769px) {
+    .services-section {
+        margin-top: 20px ; /* Adjust this value as needed */
+        background-color: navy;
+        
+    }
+}
+
+
+/* Ensure Logo is Fully Visible */
+.logo {
+    flex-shrink: 0; /* Prevents shrinking */
+    max-width: 100%; /* Ensures it doesn't overflow */
+    white-space: nowrap; /* Prevents text from wrapping */
+    font-size: 1.5rem; /* Adjust size */
+    line-height: 1; /* Keeps it properly aligned */
+    padding-right: 10px; /* Adds space between logo and hamburger */
+}
+
+/* Fix Navbar Height if Needed */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Keeps logo left, hamburger right */
+    align-items: center;
+    background-color: red;
+    padding: 10px 15px; /* Adjust padding */
+    height: auto; /* Allows the navbar to expand if needed */
+    min-height: 60px; /* Ensures enough height */
+}
+
+/* Prevent Hamburger from Pushing Logo */
+.hamburger {
+    display: flex;
+    position: absolute;
+    right: 10px; /* Keep it to the right */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1101;
+}
+
+/* Mobile Adjustments */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 8px 12px; /* Reduce padding on mobile */
+    }
+
+    .logo {
+        font-size: 1.4rem; /* Slightly smaller on mobile */
+        padding-right: 5px; /* Space between logo and hamburger */
+    }
+
+    .hamburger {
+        right: 5px; /* Ensures it stays on the far right */
+    }
+}
+
+
     </style>
 </head>
 <body>
 
-<!-- Header -->
-<header style="display: flex; align-items: center; justify-content: space-between; background-color: red; padding: 12px 20px; color: white; width: 100%; position: fixed; top: 0; left: 0; z-index: 1000; flex-wrap: nowrap;">
-    <h1 style="font-size: 1.8rem; font-weight: bold; white-space: nowrap; flex: 1;">Mansfield Gas & Exhaust</h1>
+<!-- HEADER -->
+<header class="navbar">
+    <h1 class="logo">Mansfield Gas & Exhaust</h1>
 
-    <div id="hamburger" onclick="toggleMenu()" style="display: none; flex-direction: column; cursor: pointer; position: absolute; right: 0px; top: 50%; transform: translateY(-50%); padding-right: 15px; z-index: 1100;">
-        <div style="width: 30px; height: 3px; background-color: white; margin: 5px;"></div>
-        <div style="width: 30px; height: 3px; background-color: white; margin: 5px;"></div>
-        <div style="width: 30px; height: 3px; background-color: white; margin: 5px;"></div>
+    <div class="nav-container">
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
 </header>
 
-<!-- Navigation Menu (Dropdown Style) -->
-<div id="nav-container" style="display: none; position: absolute; top: 60px; left: 0; width: 100%; background-color: red; z-index: 1001;">
-    <ul id="nav-links" style="list-style: none; display: flex; flex-direction: column; align-items: center; padding: 10px 0; width: 100%;">
-        <li><a href="./index.html" style="color: white; text-decoration: none; font-size: 16px; padding: 12px 20px; display: block;">Home</a></li>
-        <li><a href="./about.html" style="color: white; text-decoration: none; font-size: 16px; padding: 12px 20px; display: block;">About</a></li>
-        <li><a href="./services.html" style="color: white; text-decoration: none; font-size: 16px; padding: 12px 20px; display: block;">Services</a></li>
-        <li><a href="./contact.html" style="color: white; text-decoration: none; font-size: 16px; padding: 12px 20px; display: block;">Contact</a></li>
-    </ul>
-</div>
+<style>
 
-<!-- Contact Box -->
-<div style="display: flex; flex-direction: column; align-items: center; background: red; padding: 20px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); max-width: 350px; text-align: center; border: 1px solid #ddd; margin: 150px auto;">
-    <h2 style="color: black; font-size: 1.5rem; margin-bottom: 10px;">Contact Us</h2>
-    <p><strong>📍 Address:</strong> 123 Main Street, Mansfield, TX</p>
-    <p><strong>📞 Phone:</strong> (123) 456-7890</p>
-    <p><strong>✉ Email:</strong> info@mansfieldgas.com</p>
-</div>
 
-<!-- Footer -->
-<footer style="background-color: red; color: white; text-align: center; padding: 10px 0; font-size: 0.9rem; width: 100%; margin-top: auto;">
+
+/* HEADER */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo on left, hamburger on right */
+    background-color: red;
+    padding: 10px 15px;
+    color: white;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-grow: 0; /* Prevents it from being pushed */
+    margin-left: 10px; /* Ensures space from the edge */
+}
+
+/* NAVIGATION LINKS */
+.nav-container {
+    flex-grow: 1; /* Allows nav to take remaining space */
+    display: flex;
+    justify-content: center; /* Keeps links centered */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 12px 20px;
+    display: block;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    right: 15px; /* Forces it to the right */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1101;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+}
+
+/* MOBILE VIEW */
+@media screen and (max-width: 1024px) {
+    .nav-container {
+        display: none; /* Hide nav links initially */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: red;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hamburger {
+        display: flex; /* Show on mobile */
+    }
+
+    .nav-container.active {
+        display: flex; /* Show menu when toggled */
+        flex-direction: column;
+    }
+}
+
+/* Adjustments to Prevent Overlap */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 8px 12px; /* Reduce padding */
+        height: auto;
+    }
+
+    .logo {
+        font-size: 1.5rem; /* Slightly smaller */
+        margin-left: 10px;
+    }
+
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+
+
+
+</style>
+<!-- header ending  -->
+
+<!-- Muffler & Propane Services Section -->
+<section class="services-section">
+
+    <!-- Propane Services -->
+    <div class="service-box propane">
+        <i class="fa-solid fa-gas-pump service-icon"></i>
+        <h2>Propane Services</h2>
+        <p>We provide high-quality propane for residential, commercial, and industrial use...</p>
+        <a href="./contact.html" class="service-btn">Learn More</a>
+    </div>
+
+    <!-- Muffler Services -->
+    <div class="service-box muffler">
+        <i class="fa-solid fa-car service-icon"></i>
+        <h2>Muffler Services</h2>
+        <p>Our muffler services ensure that your vehicle runs quietly and efficiently...</p>
+        <a href="./contact.html" class="service-btn">Learn More</a>
+    </div>
+
+</section>
+
+<!-- Footer Section -->
+<footer class="small-footer">
     <p>&copy; 2025 Mansfield Gas & Exhaust | 123 Main Street, Mansfield, TX | (123) 456-7890 | info@mansfieldgas.com</p>
 </footer>
 
+<!-- JAVASCRIPT -->
 <script>
     function toggleMenu() {
-        let navContainer = document.getElementById("nav-container");
-
-        if (navContainer.style.display === "block") {
-            navContainer.style.display = "none";
-        } else {
-            navContainer.style.display = "block";
-        }
+        document.querySelector('.nav-container').classList.toggle('active');
     }
-
-    // Ensure hamburger appears on small screens
-    function checkScreenSize() {
-        let hamburger = document.getElementById("hamburger");
-        let navContainer = document.getElementById("nav-container");
-
-        if (window.innerWidth <= 768) {
-            hamburger.style.display = "flex";
-            navContainer.style.display = "none"; // Hide menu by default on mobile
-        } else {
-            hamburger.style.display = "none";
-            navContainer.style.display = "flex"; // Show menu by default on desktop
-        }
-    }
-
-    window.onload = checkScreenSize;
-    window.onresize = checkScreenSize;
 </script>
 
 
